@@ -11,6 +11,10 @@
     <img alt="Author" src="https://img.shields.io/badge/author-Leonardo%20Vieira-red">
   </a>
   
+   <a href="https://github.com/LeonardoVieira1630/">
+    <img alt="Author" src="https://img.shields.io/badge/author-Julio%20Milani-red">
+  </a>
+  
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/top/LeonardoVieira1630/D.T.A.B.svg">
   
  
