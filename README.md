@@ -21,16 +21,16 @@
 </p>
 
 <p align="center">
-  <a href="#clipboard-descrição">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#clipboard-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-clipboard-Objetivos">Objetivos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#clipboard-Instalação">Instalação</a>&nbsp;&nbsp;&nbsp;
+  <a href="descrição">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="Objetivos">Objetivos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="Instalação">Instalação</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 <br>
 
 
-## :robot: Descrição  
+## :descrição: :robot: Descrição  
 
 D.T.A.B (Day Trade Asynchronous Bot) é um software desenvolvido em JavaScript para ser capaz de fazer operações de compra e venda de criptomoedas. Alem disso, ele tem autonomia de decisão nas transações pois é capaz de jugar o melhor momento de faze-las.
 
