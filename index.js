@@ -4,11 +4,8 @@ Pegamos esse instante usando "process.env.CRAWLER_INTERVAL".*/
 //const { parse } = require('dotenv');
 const api = require('./api')
 const symbol = process.env.SYMBOL
-const apiUrl = process.env.API_URL
 const profitability = process.env.PROFITABILITY
 const coin = process.env.COIN
-
-
 
 
 console.log('Iniciando monitoramento!');
@@ -30,7 +27,7 @@ setInterval(async() => {
     }
 
     // alterar esse valor para um valor condizente 
-    if (sell<700) {
+    if (sell && sell<700) {
         console.log('Devemos comprar!')
         const account = await api.accountInfo();
         const coins = account.balances.filter(b => symbol.indexOf(b.asset) !== -1)
@@ -39,25 +36,39 @@ setInterval(async() => {
 
         //Para outras moedas (btc), revisar essa parte no 2 - 8
         console.log('Verificando se tenho dinheiro...')
-        const carteiraUSD = parseFloat(coins.find(c => c.asset === coin).free);
-        if(sell <= carteiraUSD){
+
+        const carteiraUSD = parseFloat(coins.find(c => c.asset.endsWith(coin)).free);
+        //Da pra melhorar essa precisão com base na moeda que vamos usar.
+        const qty = parseFloat((carteiraUSD/sell) - 0.00001).toFixed(5);
+        console.log(qty)
+        
+        if(sell <= qty){
 
             console.log('Tenho! Comprando!');
-            const buyOrder = await api.newOrder(symbol, 1);
+            const buyOrder = await api.newOrder(symbol, qty);
             console.log(`orderId: ${buyOrder.orderId}`);
             console.log(`status: ${buyOrder.status}`);
 
-            const price = parseFloat(sell * profitability).toFixed(8);
-            console.log(`Posicionando venda. Ganho de ${profitability}`);
-            console.log('Vendendo por: ' + price)
-            const sellOrder = await api.newOrder(symbol, 1,  price, 'SELL', 'LIMIT');
-            console.log(`orderId: ${sellOrder.orderId}`);
-            console.log(`status: ${sellOrder.status}`);
+            if(buyOrder === 'FILLED'){
+                const price = parseFloat(sell * profitability).toFixed(5);
+                console.log(`Posicionando venda. Ganho de ${profitability}`);
+                console.log('Vendendo por: ' + price)
+                const sellOrder = await api.newOrder(symbol, 1,  price, 'SELL', 'LIMIT');
+                console.log(`orderId: ${sellOrder.orderId}`);
+                console.log(`status: ${sellOrder.status}`);
+            }
+
+            else{
+                console.log('Compra não efetuada com sucesso.')
+            }
 
         }
+        
     }
-    else if(buy>1000) console.log('Hora de vender!') // esse elseif é pra se eu quiser implementar
-    //alguma lógica de venda (atualmente estou colocando a venda em 10% do preço que comprei).
+    else if(buy && buy>1000) console.log('Hora de vender!') 
+    // esse elseif é pra se eu quiser implementar
+    //alguma lógica de venda (atualmente estou colocando a 
+    //venda em 10% do preço que comprei).
     else console.log('Esperando.')
     
    //console.log(await api.exchangeInfo())
