@@ -1,0 +1,57 @@
+/**/ *{
+    font-family: monospace;
+
+    color: white;
+    /*color: black; */
+}
+hr{
+    border-top: 2px solid white;
+}
+body{
+    background: black;
+    /* background: white; */
+}
+.header{
+    color: white;
+    border-radius: 0.5rem;
+    padding: 5px 20px;
+    text-align: center;
+
+    background: #724e91;
+    /* background: #3c887e; */
+}
+.dtab{
+    color: inherit;
+    font-size: 0.9rem;
+}
+.credits{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.updater{
+    color: blue;
+}
+.middle{
+    border-radius: 8px;
+    padding: 2%;
+
+    background: #451f55;
+    /* background: #bcd8c1; */
+
+    color: white;
+    /* color: black; */
+}
+.middle li, p, span{
+    color: white;
+    /* color: black; */
+}
+.graphsection{
+    padding: 10px;
+    border-radius: 2%;
+
+    color: white;
+    /* color: black; */
+
+    background: #22162b;
+    /* background: #e5e5e5; */
+}
