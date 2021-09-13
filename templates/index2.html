@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--
+    <link rel="stylesheet" href="./styles.css">
+    -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+    <!--
+    <script src ="{{ url_for('static',filename='styles/styles.css') }}"></script>
+    -->
+    <title>D.T.A.B</title>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+</head>
+<body>
+    <br>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-6">
+                <h1 class="header">D.T.A.B.<span class="dtab">(Day Trading Autonomous Bot)</span></h1>
+                <p></p>
+            </div>
+
+            <div class="col-6">
+                <h1 class="credits">Made by: Leonardo Vieira & Julio Milani</h1>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <!--
+            <div class="col-6 alert-info middle" role="alert">
+                <h2>wallet</h2>
+                <ul id="coins">
+                    <li>Bitcoin:<span>12.3456789</span></li>
+                    <li>Dolar Equivalent:<span>12.34 USD</span></li>
+                </ul>
+            </div>-->
+
+
+            <!-- Nesse div podemos comprar moedas sem necessidade do bot -->
+            <div class="col-6 alert-info middle" role="alert" style="border: solid gray 1px; padding: 20px; width: 600px; margin-top: 20px;">
+                <h3>Buy Crypto</h3>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div style="padding: 10px; margin-bottom: 10px; background: pink; border: solid red 1px; color: red;">
+                                    
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+
+                    {% endif %}
+                {% endwith %}
+
+              <!-- Nesse div escolhemos o simbolo e emitimos a ordem  -->
+              <form action="/buy" method="post">
+                <input type="text" id="quantity" name="quantity" placeholder="eg. 0.001" />
+                <select id="symbol" name="symbol">
+                    {% for symbol in symbols %}
+                        <option>{{ symbol['symbol'] }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" name="buy" value="buy" />
+              </form>
+            </div>
+
+
+             <!--
+            <div class="col-5 alert-sucess offset-md-1 middle" role="alert">
+                <h2>market</h2>
+                <p>Profitability: <span> 12.34% </span></p>
+                <p>Sell price:<span id="sell"></span>1.234 USD</p>
+                <p>Buy price:<span id="sell"></span>5.678 USD</p>
+            </div>-->
+
+
+            <!-- Aqui podemos ver as informações da nossa conta -->
+            <div class="col-5 alert-sucess offset-md-1 middle" role="alert" id=my_balances>
+                        
+                <h2>Balances</h2>
+                <table>
+                    {% for balance in my_balances %}
+                    <tr>
+                        <td>
+                            {{ balance['asset'] }}
+                        </td>
+                        <td>
+                            {{ balance['free'] }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                
+            </div>
+
+
+
+        </div>
+        <hr>
+        <div id="chart"></div>
+        <!--
+        <div class="graphsection">
+            <h2>Candlestick Graph</h2>
+            <p class="updater">last update at:<span id="last_update"> 31/12/2000 16:45:55 </span></p>
+            <p style="color: inherit;">(gráfico meramente ilustrativo)</p>
+            <img src="./candlestick_chart.svg" alt="GRÁFICO AQUI">
+        </div>
+        -->
+        <hr>
+        <div>
+            <h2>Timeline</h2>
+            <ul id="timeline" style="list-style: none;">
+                <li class="alert alert-secondary" role="alert">"data/horário: vendeu/comprou 12.3456 BTC a 12.34 USD"</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src ="{{ url_for('static' , filename='chart.js') }}"></script>
+
+</body>
+</html>
