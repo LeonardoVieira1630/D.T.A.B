@@ -34,7 +34,7 @@
 
 ## :robot: Descrição  
 
-D.T.A.B (Day Trade Asynchronous Bot) é um software desenvolvido em JavaScript para ser capaz de fazer operações de compra e venda de criptomoedas. Alem disso, ele tem autonomia de decisão nas transações pois é capaz de jugar o melhor momento de faze-las.
+D.T.A.B (Day Trade Asynchronous Bot) é um software desenvolvido em Python para ser capaz de fazer operações de compra e venda de criptomoedas. Alem disso, ele tem autonomia de decisão nas transações pois é capaz de jugar o melhor momento de faze-las.
 
 Para montar a lógica do robô e torna-lo realmente eficiente, levamos em consideração os conceitos apresentados em:
 
